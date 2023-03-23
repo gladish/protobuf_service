@@ -61,12 +61,10 @@ public:
   void SetFailed(const std::string& reason) override;  
   bool IsCanceled() const override;
   void NotifyOnCancel(google::protobuf::Closure *callback) override;
-  void SetTimeout(std::chrono::milliseconds timeout);
 
 private:
   std::string m_error_text;
   bool m_is_canceled { false };
-  std::chrono::milliseconds m_timeout = { std::chrono::milliseconds(1000) };
 };
 
 } }

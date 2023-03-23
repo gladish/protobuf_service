@@ -2,12 +2,12 @@
 
 void rdk::rpc::Controller::Reset()
 {
-
+  m_error_text.clear();
 }
 
 bool rdk::rpc::Controller::Failed() const 
 {
-  return false;
+  return !m_error_text.empty();
 }
 
 std::string rdk::rpc::Controller::ErrorText() const 
@@ -18,11 +18,6 @@ std::string rdk::rpc::Controller::ErrorText() const
 void rdk::rpc::Controller::StartCancel() 
 {
 
-}
-
-void rdk::rpc::Controller::SetTimeout(std::chrono::milliseconds timeout) 
-{
-  m_timeout = timeout;
 }
 
 void rdk::rpc::Controller::SetFailed(const std::string& reason) 

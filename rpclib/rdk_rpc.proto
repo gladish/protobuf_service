@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package rdk.rpc;
+
+import "google/protobuf/descriptor.proto";
+
+option cc_generic_services = true;
+
+extend google.protobuf.MessageOptions {
+  optional string event_name = 50000;  
+}
+
+message ProtocolDataUnit {  
+  message Request {
+    int32 correlation_key = 1;
+    string service_name = 2;
+    string method_name = 3;
+    bytes message = 4; 
+    string reply_to = 5;   
+  }
+  message Response {
+    int32 correlation_key = 1;
+    string service_name = 2;
+    string method_name = 3;
+    bytes message = 4;
+  }
+  message Event {
+    string event_name = 1;
+    bytes message = 2;
+  }
+  oneof pdu {
+    Request request = 1;
+    Response response = 2;
+    Event event = 3;
+  }
+}
